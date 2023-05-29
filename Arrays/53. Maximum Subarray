@@ -1,0 +1,19 @@
+// Given an integer array nums, find the subarray with the largest sum, and return its sum.
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int sum=nums[0];
+        int nsum=sum;
+        for(int i=1;i<nums.size();i++){
+            if(nsum<0){
+                nsum=0;
+            }
+            nsum=nsum+nums[i];
+            if(nsum>sum){
+                sum=nsum;
+            }
+        }
+        return sum;
+    }
+};
