@@ -1,3 +1,48 @@
 //Given the head of a singly linked list and two integers left and right where left <= right, reverse 
 //the nodes of the list from position left to position right, and return the reversed list.
 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if(head==NULL){
+            return head;
+        }
+        if(left>=right){
+            return head;
+        }
+
+        ListNode *temp1=head;
+        ListNode *temp2=head;
+        int count=1;
+        while(count<right && left<right){
+            temp2=temp2->next;
+            if(count<left){
+                temp1=temp1->next;
+            }
+            count++;
+            if(count==right){
+                int temp=temp1->val;
+                temp1->val=temp2->val;
+                temp2->val=temp;
+                count=1;
+                left++;
+                right--;
+                temp1=head;
+                temp2=head;
+            }
+        }
+        return head;
+
+
+    }
+};
