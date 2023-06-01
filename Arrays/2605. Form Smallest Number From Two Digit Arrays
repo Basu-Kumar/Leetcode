@@ -1,0 +1,36 @@
+//Given two arrays of unique digits nums1 and nums2, return the smallest number that contains at least 
+//one digit from each array.
+ 
+class Solution {
+public:
+    int minNumber(vector<int>& nums1, vector<int>& nums2) {
+        int sm1=nums1[0];
+        for(int i=1;i<nums1.size();i++){
+            if(nums1[i]<sm1){
+                sm1=nums1[i];
+            }
+        }
+        int sm2=nums2[0];
+        for(int i=1;i<nums2.size();i++){
+            if(nums2[i]<sm2){
+                sm2=nums2[i];
+            }
+        }
+        int a=sm1*10+sm2;
+        int b=sm2*10+sm1;
+        int n=(a<b)?a:b;
+        
+        unordered_map<int,bool> map;
+        for(int i=0;i<nums1.size();i++){
+            map[nums1[i]]=true;
+        }
+        for(int i=0;i<nums2.size();i++){
+            if(map.count(nums2[i])>0){
+                if(nums2[i]<n){
+                    n=nums2[i];
+                }
+            }
+        }
+        return n;
+    }
+};
