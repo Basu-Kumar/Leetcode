@@ -1,0 +1,21 @@
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        unordered_map<int,int> mp;
+
+        for(auto i:nums){
+            mp[i]++;
+        }
+
+        for(auto it:mp){
+            if(it.second==1){
+                return it.first;
+            }
+        }
+        return -1;
+    }
+};
