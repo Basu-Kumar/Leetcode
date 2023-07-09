@@ -1,0 +1,28 @@
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+A word is a maximal substring consisting of non-space characters only.
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int end=s.length()-1;
+        int start=0;
+        int count=0;
+
+        while(s[end]==' '){
+            end--;
+        }
+
+        if(end-start==0){
+            return 1;
+        }
+        while(s[end]!=' '){
+            count++;
+            end--;
+            if(end<0){
+                return count;
+            }
+        }
+
+        return count;
+    }
+};
